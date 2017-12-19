@@ -44,15 +44,15 @@ void spaces(float number){
     } else {
         // qui sotto: numeri ad una cifra (0;9)
         if ((number > -10) && (number < 0)) {
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < 4; i++) {
                 cout << " ";
             } // qui sotto: numeri a due cifre (10;99)
         } else if ((number > -100) && (number <= 10)) {
-            for (int i = 0; i < 4; i++) {
+            for (int i = 0; i < 3; i++) {
                 cout << " ";
             } // qui sotto: numeri a tre cifre (100;999)
         } else if ((number > 1000) && (number <= 100)){
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < 2; i++) {
                 cout << " ";
             }
         }
