@@ -8,60 +8,107 @@ using namespace std;
 int menu(){
     int selezione;
 
-    cout << "Menu principale" << endl;
-    cout << "[1] Moltiplicazione (matrici 3x3)" << endl;
-    cout << "[2] Addizione (matrici 3x3)" << endl;
-    cout << "[3] Sottrazione (matrici 3x3)" << endl;
-    cout << "[4] Trasversale (matrici 3x3)" << endl;
-    cout << "[5] Determinante (matrici 3x3)" << endl;
-    cout << "[0] Esci dal programma" << endl;
-    cout << "Selezione: ";
+    cout << "-----------Menu principale-----------" << endl;
+    cout << "|->[1] Moltiplicazione (matrici 3x3)" << endl;
+    cout << "|->[2] Addizione (matrici 3x3)" << endl;
+    cout << "|->[3] Sottrazione (matrici 3x3)" << endl;
+    cout << "|->[4] Trasversale (matrici 3x3)" << endl;
+    cout << "|->[5] Determinante (matrici 3x3)" << endl;
+    cout << "|->[0] Esci dal programma" << endl;
+    cout << ">>>Selezione: ";
     cin >> selezione;
 
     return selezione;
+} //-123456
+
+/* stampa spazi bianchi per la grafica delle matrici.
+ * Dopo la prima cifra del numero ci si sposta di 5 spazi per il carattere che divide i due numeri
+ */
+void spaces(float number){
+    // NUMERI POSITIVI
+    if (number >= 0) {
+        // qui sotto: numeri ad una cifra (0;9)
+        if ((number < 10) && (number >= 0)) {
+            for (int i = 0; i < 5; i++) {
+                cout << " ";
+            } // qui sotto: numeri a due cifre (10;99)
+        } else if ((number < 100) && (number >= 10)) {
+            for (int i = 0; i < 4; i++) {
+                cout << " ";
+            } // qui sotto: numeri a tre cifre (100;999)
+        } else if ((number < 1000) && (number >= 100)){
+            for (int i = 0; i < 3; i++) {
+                cout << " ";
+            }
+        }
+    } else {
+        // qui sotto: numeri ad una cifra (0;9)
+        if ((number > -10) && (number < 0)) {
+            for (int i = 0; i < 5; i++) {
+                cout << " ";
+            } // qui sotto: numeri a due cifre (10;99)
+        } else if ((number > -100) && (number <= 10)) {
+            for (int i = 0; i < 4; i++) {
+                cout << " ";
+            } // qui sotto: numeri a tre cifre (100;999)
+        } else if ((number > 1000) && (number <= 100)){
+            for (int i = 0; i < 3; i++) {
+                cout << " ";
+            }
+        }
+    }
 }
 
 // addizione tra due matrici
-void addizioneMatrici(int matrice1[DIMENSIONE][DIMENSIONE], int matrice2[DIMENSIONE][DIMENSIONE]){
-
+void addizioneMatrici(float matrice1[DIMENSIONE][DIMENSIONE], float matrice2[DIMENSIONE][DIMENSIONE]){
+    float s;
     for (int i = 0; i < DIMENSIONE; i++) {
         for (int j = 0; j < DIMENSIONE; j++) {
-            cout << matrice1[i][j] + matrice2[i][j] << " | ";
+            cout << "| ";
+            cout << matrice1[i][j] + matrice2[i][j];
+            s = matrice1[i][j] + matrice2[i][j];
+            spaces(s);
         }
-        cout << endl;
+        cout << "|" << endl;
     }
 
 }
 
 // addizione tra due matrici (matrici 3x3)
-void sottrazioneMatrici(int matrice1[DIMENSIONE][DIMENSIONE], int matrice2[DIMENSIONE][DIMENSIONE]){
+void sottrazioneMatrici(float matrice1[DIMENSIONE][DIMENSIONE], float matrice2[DIMENSIONE][DIMENSIONE]){
+    float s;
 
     for (int i = 0; i < DIMENSIONE; i++) {
         for (int j = 0; j < DIMENSIONE; j++) {
-            cout << matrice1[i][j] + (-(matrice2[i][j])) << " | ";
+            cout << "| ";
+            cout << matrice1[i][j] + (-(matrice2[i][j]));
+            s = matrice1[i][j] + (-(matrice2[i][j]));
+            spaces(s);
         }
-        cout << endl;
+        cout << "|" << endl;
     }
 
 }
 
 // matrice trasversale (matrice 3x3) (trasforma le colonne in righe)
-void matriceTrasversale(int matrice[DIMENSIONE][DIMENSIONE]){
+void matriceTrasversale(float matrice[DIMENSIONE][DIMENSIONE]){
 
     for (int i = 0; i < DIMENSIONE; i++) {
         for (int j = 0; j < DIMENSIONE; j++) {
-            cout << matrice[j][i] << " | ";
+            cout << "| ";
+            cout << matrice[j][i];
+            spaces(matrice[j][i]);
         }
-        cout << endl;
+        cout << "|" << endl;
     }
 
 }
 
 
 // calcolo del determinante di una matrice
-void determinanteMatrice(int matrice[DIMENSIONE][DIMENSIONE]){
+void determinanteMatrice(float matrice[DIMENSIONE][DIMENSIONE]){
     int diaForward = 1, diaBack = 1;
-    int determinante = 0;
+    float determinante = 0;
 
     for (int i=0; i<DIMENSIONE; i++)
     {
@@ -79,8 +126,8 @@ void determinanteMatrice(int matrice[DIMENSIONE][DIMENSIONE]){
 
 
 // moltiplicazione tra due matrici
-void moltiplicaMatrici(int matrice1[DIMENSIONE][DIMENSIONE], int matrice2[DIMENSIONE][DIMENSIONE]){
-    int matriceMoltiplicazione[DIMENSIONE][DIMENSIONE] = {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
+void moltiplicaMatrici(float matrice1[DIMENSIONE][DIMENSIONE], float matrice2[DIMENSIONE][DIMENSIONE]){
+    float matriceMoltiplicazione[DIMENSIONE][DIMENSIONE] = {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
 
     for (int i = 0; i < DIMENSIONE; i++) {
         for (int j = 0; j < DIMENSIONE; j++) {
@@ -92,9 +139,11 @@ void moltiplicaMatrici(int matrice1[DIMENSIONE][DIMENSIONE], int matrice2[DIMENS
 
     for (int i = 0; i < DIMENSIONE; i++) {
         for (int j = 0; j < DIMENSIONE; j++) {
-            cout << matriceMoltiplicazione[j][i] << " | ";
+            cout << "|";
+            cout << matriceMoltiplicazione[i][j];
+            spaces(matriceMoltiplicazione[i][j]);
         }
-        cout << endl;
+        cout << "|" << endl;
     }
 
 }
@@ -103,8 +152,8 @@ void moltiplicaMatrici(int matrice1[DIMENSIONE][DIMENSIONE], int matrice2[DIMENS
 // funzione principale del programma
 int main() {
 
-    int matrice1[DIMENSIONE][DIMENSIONE];
-    int matrice2[DIMENSIONE][DIMENSIONE];
+    float matrice1[DIMENSIONE][DIMENSIONE];
+    float matrice2[DIMENSIONE][DIMENSIONE];
     int selezione, elemento;
 
     // acquisizione della prima matrice
